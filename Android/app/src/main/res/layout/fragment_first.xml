@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".FirstFragment">
+
+    <Button
+        android:id="@+id/btnOpenMethods1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mở danh sách available method(1)" />
+
+    <Button
+        android:id="@+id/btnOpenMethods2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mở danh sách available method(2)" />
+
+    <Button
+        android:id="@+id/btnPayWithSingleOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TT trực tiếp với chỉ online method" />
+
+    <Button
+        android:id="@+id/btnPayWithSingleLoyalty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TT trực tiếp với chỉ loyalty method" />
+
+    <Button
+        android:id="@+id/btnPayWithMultiple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TT trực tiếp với 1 Online + 1 loyatly" />
+
+    <Button
+        android:id="@+id/btnPayWithVNPayEWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TT trực tiếp với ví điện tử VNPay" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
