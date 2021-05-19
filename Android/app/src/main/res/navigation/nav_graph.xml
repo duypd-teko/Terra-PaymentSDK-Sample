@@ -8,7 +8,17 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.myapplication.FirstFragment"
-        android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/payThroughVNPayGateway"
+            app:destination="@+id/PayVNPayQR" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/PayVNPayQR"
+        android:name="com.example.myapplication.PayViaVNPayGatewayFragment"
+        tools:layout="@layout/fragment_pay_vnpay_gateway"/>
+
 </navigation>

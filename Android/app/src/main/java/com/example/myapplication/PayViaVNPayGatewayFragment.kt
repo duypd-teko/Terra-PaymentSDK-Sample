@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import vn.teko.android.payment.v2.IPaymentGateway
+import java.lang.Exception
 
 import vn.teko.android.payment.ui.PaymentActivity
 import vn.teko.android.payment.ui.data.request.*
@@ -19,7 +19,7 @@ import vn.teko.android.payment.ui.util.extension.payWith
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class PayViaVNPayGatewayFragment : Fragment() {
 
     private val paymentGateway: IPaymentGateway
         get() = MyApplication.shared.paymentGateway
@@ -29,143 +29,103 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_pay_vnpay_gateway, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.btnOpenMethods1).setOnClickListener {
-            openAvailableMethodOption1()
+        view.findViewById<Button>(R.id.btnPayVnPayQR).setOnClickListener {
+            payDirectWithVNPayQR()
         }
 
-        view.findViewById<Button>(R.id.btnOpenMethods2).setOnClickListener {
-            openAvailableMethodOption2()
+        view.findViewById<Button>(R.id.btnPayATM).setOnClickListener {
+            payDirectWithATM()
         }
 
-        view.findViewById<Button>(R.id.btnPayWithSingleOnline).setOnClickListener {
-            payDirectWithOnlineMethodOnly()
+        view.findViewById<Button>(R.id.btnPayCredit).setOnClickListener {
+            payDirectWithCredit()
         }
 
-        view.findViewById<Button>(R.id.btnPayWithSingleLoyalty).setOnClickListener {
-            payDirectWithLoyaltyMethodOnly()
+        view.findViewById<Button>(R.id.btnPayMobileBanking).setOnClickListener {
+            payDirectWithMobileBanking()
         }
-        view.findViewById<Button>(R.id.btnPayWithMultiple).setOnClickListener {
-            payDirectWithLoyaltyAndOnlineMethod()
-        }
-        view.findViewById<Button>(R.id.btnPayWithMultiple).setOnClickListener {
-            payDirectWithLoyaltyAndOnlineMethod()
-        }
-        view.findViewById<Button>(R.id.btnPayWithVNPayEWallet).setOnClickListener {
-            payDirectWithVnPayEwalletMethod()
-        }
-
-        view.findViewById<Button>(R.id.btnPayWithVNPayGateway).setOnClickListener {
-            findNavController().navigate(R.id.payThroughVNPayGateway)
+        view.findViewById<Button>(R.id.btnPayATMWithBankCode).setOnClickListener {
+            payDirectWithATMWithCode()
         }
     }
 
-    private fun openAvailableMethodOption1() {
-        try {
-            // set order info to payment including orderCode and amount
-            val builder = PaymentUIRequestBuilder().setOrderConfig(
-                PaymentV2Request.Order(
-                    "AXXXXTTT_TEST_222",
-                    10000
-                )
-            )
-            paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
-    }
 
-    private fun openAvailableMethodOption2() {
-        try {
-            // set order info to payment including orderCode
-            val builder = PaymentUIRequestBuilder()
-                .setOrderCode(orderCode = "YourOrderCode")
-                // set type all for method online and passing amount
-                .setMainMethod(PaymentMainMethodRequest.All(amount = 1000))
-            paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun payDirectWithOnlineMethodOnly() {
+    private fun payDirectWithVNPayQR() {
         try {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
-                .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 1000))
+                .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 10000))
             paymentGateway.payWith(this, builder.build())
         } catch (e: Throwable) {
             e.printStackTrace()
         }
     }
 
-    private fun payDirectWithLoyaltyMethodOnly() {
+    private fun payDirectWithATM() {
         try {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
-                // set loyalty method and passing params
-                .setLoyaltyMethod(LoyaltyMethodRequest(points = 1000, amount = 1000))
+                // set type specific for method online and passing params based on method selected
+                // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
+                .setMainMethod(PaymentMainMethodRequest.ATMBank(amount = 10000))
             paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    private fun payDirectWithLoyaltyAndOnlineMethod() {
+    private fun payDirectWithCredit() {
         try {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
-                // set loyalty method and passing params
-                .setLoyaltyMethod(LoyaltyMethodRequest(points = 1000, amount = 1000))
-                .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 1000))
-
+                // set type specific for method online and passing params based on method selected
+                // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
+                .setMainMethod(PaymentMainMethodRequest.CreditCard(amount = 10000))
             paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
-    private fun payDirectWithVnPayEwalletMethod() {
+    private fun payDirectWithMobileBanking() {
         try {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
-                // set loyalty method and passing params
-                .setMainMethod(
-                    PaymentMainMethodRequest.VNPayEWallet(
-                        amount = 1000
-                    )
-                )
-
-                // must be pass config for VNPayEWallet
-                .setMetadata(
-                    PaymentV2Request.Metadata(
-                        methods = arrayListOf(
-                            PaymentV2Request.Metadata.MethodConfig.VNPayEWallet(
-                                partnerId = "0999999998",
-                                phone = "0999999998",
-                                name = "Nguyen",
-                                email = "email@email.com"
-                            )
-                        )
-                    )
-                )
+                // set type specific for method online and passing params based on method selected
+                // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
+                .setMainMethod(PaymentMainMethodRequest.MobileBanking(amount = 10000))
             paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
+    private fun payDirectWithATMWithCode() {
+        try {
+            // set order info to payment including orderCode
+            val builder = PaymentUIRequestBuilder()
+                .setOrderCode(orderCode = "YourOrderCode")
+                // set type specific for method online and passing params based on method selected
+                // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
+                .setMainMethod(PaymentMainMethodRequest.ATMBank(amount = 10000, route = VnPayGatewayRoute.Bank("ncb")))
+            paymentGateway.payWith(this, builder.build())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {

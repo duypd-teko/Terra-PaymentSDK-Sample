@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_marginHorizontal="32dp"
+    android:orientation="vertical"
+    tools:context=".FirstFragment">
+
+    <Button
+        android:id="@+id/btnPayVnPayQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="VnPay QR" />
+
+    <Button
+        android:id="@+id/btnPayATM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ATM" />
+
+    <Button
+        android:id="@+id/btnPayCredit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Credit/Debit" />
+
+    <Button
+        android:id="@+id/btnPayMobileBanking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mobile Banking" />
+
+    <Button
+        android:id="@+id/btnPayATMWithBankCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ATM with bankCode" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
