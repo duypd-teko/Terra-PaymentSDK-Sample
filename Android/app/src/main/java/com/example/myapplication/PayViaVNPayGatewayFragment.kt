@@ -61,6 +61,7 @@ class PayViaVNPayGatewayFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 10000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 10000))
@@ -75,6 +76,7 @@ class PayViaVNPayGatewayFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 10000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.ATMBank(amount = 10000))
@@ -89,6 +91,7 @@ class PayViaVNPayGatewayFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 10000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.CreditCard(amount = 10000))
@@ -103,6 +106,7 @@ class PayViaVNPayGatewayFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 10000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.MobileBanking(amount = 10000))
@@ -117,6 +121,7 @@ class PayViaVNPayGatewayFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 10000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.ATMBank(amount = 10000, route = VnPayGatewayRoute.Bank("ncb")))

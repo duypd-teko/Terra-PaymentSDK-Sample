@@ -9,18 +9,11 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/btnOpenMethods1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Mở danh sách available method(1)" />
-
-    <Button
         android:id="@+id/btnOpenMethods2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Mở danh sách available method(2)" />
+        android:text="Mở danh sách available method" />
 
     <Button
         android:id="@+id/btnPayWithSingleOnline"

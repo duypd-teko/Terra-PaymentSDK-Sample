@@ -21,6 +21,6 @@ class MyApplication : Application() {
         TerraApp.initializeApp(this).apply {
             TerraApollo.getInstance(this)
         }
-        paymentGateway = TerraPayment.getInstance(this, TerraApp.getInstance())
+        paymentGateway = TerraPayment.getInstance(TerraApp.getInstance())
     }
 }

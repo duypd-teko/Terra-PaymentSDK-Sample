@@ -35,12 +35,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.btnOpenMethods1).setOnClickListener {
-            openAvailableMethodOption1()
-        }
 
         view.findViewById<Button>(R.id.btnOpenMethods2).setOnClickListener {
-            openAvailableMethodOption2()
+            openAvailableMethodOption()
         }
 
         view.findViewById<Button>(R.id.btnPayWithSingleOnline).setOnClickListener {
@@ -65,28 +62,19 @@ class FirstFragment : Fragment() {
         }
     }
 
-    private fun openAvailableMethodOption1() {
-        try {
-            // set order info to payment including orderCode and amount
-            val builder = PaymentUIRequestBuilder().setOrderConfig(
-                PaymentV2Request.Order(
-                    "AXXXXTTT_TEST_222",
-                    10000
-                )
-            )
-            paymentGateway.payWith(this, builder.build())
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun openAvailableMethodOption2() {
+    private fun openAvailableMethodOption() {
         try {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 1000)
                 // set type all for method online and passing amount
                 .setMainMethod(PaymentMainMethodRequest.All(amount = 1000))
+                .setOptions(
+                    ExtraOptions(
+                        shouldShowPaymentResultScreen = true
+                    )
+                )
             paymentGateway.payWith(this, builder.build())
         } catch (e: Throwable) {
             e.printStackTrace()
@@ -98,6 +86,7 @@ class FirstFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 1000)
                 // set type specific for method online and passing params based on method selected
                 // Refer to _root_ide_package_.vn.teko.android.payment.ui.data.request.PaymentMainMethodRequest to see all available online method
                 .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 1000))
@@ -112,6 +101,7 @@ class FirstFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 1000)
                 // set loyalty method and passing params
                 .setLoyaltyMethod(LoyaltyMethodRequest(points = 1000, amount = 1000))
             paymentGateway.payWith(this, builder.build())
@@ -125,6 +115,7 @@ class FirstFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 1000)
                 // set loyalty method and passing params
                 .setLoyaltyMethod(LoyaltyMethodRequest(points = 1000, amount = 1000))
                 .setMainMethod(PaymentMainMethodRequest.VNPayGatewayQR(amount = 1000))
@@ -141,6 +132,7 @@ class FirstFragment : Fragment() {
             // set order info to payment including orderCode
             val builder = PaymentUIRequestBuilder()
                 .setOrderCode(orderCode = "YourOrderCode")
+                .setOrderAmount(amount = 1000)
                 // set loyalty method and passing params
                 .setMainMethod(
                     PaymentMainMethodRequest.VNPayEWallet(
